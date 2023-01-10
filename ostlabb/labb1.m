@@ -1,26 +1,28 @@
-% positions
-L = 1
-x(1) = [-L/2,0]
-x(2) = [L/2,0]
-x(3) = [0,L/2]
+% particles and positions
+NP = 3;
+M = [1,1,1]
+L = [1,1,1]
+x0 = [-L/2,0;L/2,0;0,L/2]
 
 % velocity
-vini = 0.01
-v(1) = [vini,0]
-v(2) = [0,-vini]
-v(3) = [-vini/2,-vini/2]
+vini = 0.01;
+v0 = [vini,0;0,-vini;-vini/2,-vini/2]
+
 
 %timestep
 timesteps = 1500
 dt = 0.1
-time = 1:0.1:timesteps
+time = 1:dt:timesteps*dt
 N = length(time)
 
 m = 1
 
 
 
-for i = 2:N
+for n = 4:N
+
+    F(n) = 0.5*(0.5-rand(NP,2))-0.1*v(n)
+    v(n+1/2)=v(n-1/2)+dt*inv(M)*F(n)
+    X(n+1)=x(n)+dt*v(n+1/2)
+end
     
-    v()
-F = 0.5*(0.5-rand(NP,2))-0.1*V
